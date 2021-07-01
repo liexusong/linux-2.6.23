@@ -50,7 +50,7 @@ struct radix_tree_node {
 	unsigned int	height;		/* Height from the bottom */
 	unsigned int	count;
 	struct rcu_head	rcu_head;
-	void		*slots[RADIX_TREE_MAP_SIZE];
+	void			*slots[RADIX_TREE_MAP_SIZE];
 	unsigned long	tags[RADIX_TREE_MAX_TAGS][RADIX_TREE_TAG_LONGS];
 };
 
@@ -110,8 +110,7 @@ radix_tree_node_alloc(struct radix_tree_root *root)
 
 static void radix_tree_node_rcu_free(struct rcu_head *head)
 {
-	struct radix_tree_node *node =
-			container_of(head, struct radix_tree_node, rcu_head);
+	struct radix_tree_node *node = container_of(head, struct radix_tree_node, rcu_head);
 	kmem_cache_free(radix_tree_node_cachep, node);
 }
 

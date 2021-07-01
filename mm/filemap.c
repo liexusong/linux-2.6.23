@@ -593,7 +593,8 @@ void fastcall __lock_page_nosync(struct page *page)
  * Is there a pagecache struct page at the given (mapping, offset) tuple?
  * If yes, increment its refcount and return it; if no, return NULL.
  */
-struct page * find_get_page(struct address_space *mapping, unsigned long offset)
+struct page *
+find_get_page(struct address_space *mapping, unsigned long offset)
 {
 	struct page *page;
 
@@ -616,8 +617,8 @@ EXPORT_SYMBOL(find_get_page);
  *
  * Returns zero if the page was not present. find_lock_page() may sleep.
  */
-struct page *find_lock_page(struct address_space *mapping,
-				unsigned long offset)
+struct page *
+find_lock_page(struct address_space *mapping, unsigned long offset)
 {
 	struct page *page;
 
@@ -858,12 +859,13 @@ static void shrink_readahead_size_eio(struct file *filp,
  * Note the struct file* is only passed for the use of readpage.
  * It may be NULL.
  */
-void do_generic_mapping_read(struct address_space *mapping,
-			     struct file_ra_state *_ra,
-			     struct file *filp,
-			     loff_t *ppos,
-			     read_descriptor_t *desc,
-			     read_actor_t actor)
+void
+do_generic_mapping_read(struct address_space *mapping,
+					    struct file_ra_state *_ra,
+					    struct file *filp,
+					    loff_t *ppos,
+					    read_descriptor_t *desc,
+					    read_actor_t actor)
 {
 	struct inode *inode = mapping->host;
 	unsigned long index;
